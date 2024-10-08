@@ -1,0 +1,91 @@
+.header_body {
+    position: absolute;
+    height: 40px;
+    width: 100%;
+}
+
+.header {
+    height: 50px;
+    background-color: transparent;
+    position: fixed;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.login_user_image{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: solid 1px #c6c6c6;
+}
+
+.login_user_image img, .user_image img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.menu{
+    background-color: #fff;
+    display: none;
+    border: solid 1px #e0e0e0;
+    border-radius: 20px;
+    position: absolute;
+    padding-top: 20px;
+    top: 30px;
+    width: 300px;
+    right: 10px;
+}
+
+.user_image_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.user_image {
+    height: 80px;
+    width: 80px;
+    border: solid 1px #e0e0e0;
+    border-radius: 50%;
+    
+}
+
+.user_info p {
+    text-align: center;
+    margin: 5px;
+}
+
+.user_info .user_name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user_info .user_email {
+    font-size: 10px;
+    color: #868686;
+}
+
+.menu_info{
+    border-top: solid 1px #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.menu_inner div {
+    margin: 20px 0;
+}
+
+.logout-button{
+    padding: 0;
+}

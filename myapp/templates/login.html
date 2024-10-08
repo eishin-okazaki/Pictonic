@@ -1,0 +1,44 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}ログイン{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="login_section">
+        <div class="login_box">
+            <div class="left_side">
+                <div class="inner">
+                    <p class="login_text">LOGIN</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input_label">
+                            <label for="email">メールアドレス</label>
+                        </div>
+                        <div class="text_box">
+                            <input type="email" name="email" id="email" required>
+                        </div>
+                        <div class="input_label">
+                            <label for="password">パスワード</label>
+                        </div>
+                        <div class="input_text">
+                            <input type="password" name="password" id="password" required>
+                        </div>
+                        <div class="button">
+                            <button type="submit">SIGN IN</button>
+                        </div>
+                    </form>
+                    <p class="link"><a href="../user_register">ユーザー登録はお済ですか？</a></p>
+                </div>
+            </div>
+            <div class="right_side">
+                <div class="img_inner">
+                    <div class="img_box">
+                        <img src="{% static 'images/icon.png' %}" alt="">
+                    </div>
+                    <p>Pictonic </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

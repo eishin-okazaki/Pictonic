@@ -1,0 +1,83 @@
+.mypage {
+    min-height: 100vh;
+    background: url(../images/background.webp);
+    position: relative;
+    background-attachment: fixed;
+}
+
+.mypage_wrapper {
+    background-image:
+    radial-gradient(at 0% 0%, rgb(216, 181, 232), transparent),
+    radial-gradient(at 100% 0%, rgb(247, 247, 97), transparent),
+    radial-gradient(at 100% 100%, #f00, transparent),
+    radial-gradient(at 0% 100%, #f0f, transparent);
+    width: 100%;
+    z-index: 1;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mypage_inner {
+    width: 60%;
+    padding: 60px 0;
+}
+
+.image_area {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.image_area:after {
+    content: "";
+    display: block;
+    width: 30%;
+    height: 0;
+}
+
+.image_box {
+    width: 30%;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.image, img {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px !important;
+}
+
+.image img {
+    box-shadow: 0 8px 24px #cdd3d8;
+}
+
+.download {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgb(48, 48, 48);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px #f6f6f6c6;
+}
+
+.download_icon {
+    width: 40%;
+    height: 40%;
+}
+
+.download:hover {
+    transition: .3s;
+    background: linear-gradient(70deg, #e01df69e, #8832929e);
+}

@@ -1,0 +1,30 @@
+# Python bite code
+*.py[cod]
+__pycache__/
+*.so
+
+# __pycache__
+**/migrations/__pycache__/
+
+# static
+/static/
+/myapp/static/images
+media/
+
+# SQLite
+db.sqlite3
+db.sqlite3-journal
+
+# logs
+*.log
+
+# .pytest chash dir
+.pytest_cache/
+
+# tmpfile
+*.tmp
+*.swp
+.python-version
+
+myenv/
+

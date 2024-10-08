@@ -1,0 +1,45 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}ユーザー登録{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_register.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="register_section">
+        <div class="register_inner">
+            <div class="register_wrapper">
+                <p class="signup">SIGN UP</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <p>ユーザー名</p>
+                        {{ form.name }}
+                    </div>
+    
+                    <div class="form-group">
+                        <p>メールアドレス</p>
+                        {{ form.email }}
+                    </div>
+    
+                    <div class="form-group">
+                        <p>パスワード</p>
+                        {{ form.password1 }}
+                    </div>
+    
+                    <div class="form-group">
+                        <p>パスワード(再入力)</p>
+                        {{ form.password2 }}
+                    </div>
+                    <div class="button">
+                        <button type="submit">SIGN UP</button>
+                    </div>
+                </form>
+                <p class="link">
+                    <a href="../login">ログイン画面はこちら</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

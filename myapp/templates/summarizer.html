@@ -1,0 +1,158 @@
+<!-- templates/summarizer.html -->
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}top{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/summarizer.css' %}">
+{% endblock %}
+{% block content %}
+    <div id="loading-overlay">
+        <div id="spinner">
+            <span id="loading-text">生成中</span>
+        </div>
+    </div>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    <div class="summarizer_section">
+        <div class="summarizer_body"> 
+            <div class="summarizer_sentence">
+                <div>
+                    <h1>Pictonic</h1>
+                </div>
+            </div>
+            {% if not generated_image and not similar_image %}
+                {% if summary %}
+                <div class="summarizer_text_section">
+                    <div class="summarizer_text_inner">
+                        <form method="post" action="" class="summarizer_image_form">
+                            {% csrf_token %}
+                            <p id="animetion_sentence" class="sentence animetion_sentence">URLからAIが生成した要約は以下の通りです。<br>
+                            足りない情報があれば自由に追加して、ロゴ画像を生成しましょう。</p>
+                            <div class="summarizer_box">
+                                <div class="summarizer_box_inner">
+                                    <textarea id="summary" name="summary" rows="10" cols="80" class="summarize_text">{{ summary }}</textarea><br>
+                                </div>
+                            </div>
+                            <div class="summarize_text_button">
+                                <div>
+                                    <button type="submit" name="generate_image">画像を生成する</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                <div class="summarizer_sentence_box">
+                    <div>
+                        <p>
+                            PictonicはWEBサイトの情報を基にAIがロゴ画像を生成します。<br>
+                            要約された内容を自由に編集して、あなた好みをロゴを生成してみましょう。<br>
+                            まずはWEBサイトのURLを入力してください。
+                        </p>
+                    </div>
+                </div>
+                <div class="summarizer_url_form_body">
+                    <div class="summarizer_url_form_inner">
+                        <form method="post" action="" class="summarizer_url_form">
+                            {% csrf_token %}
+                            <label for="url"></label>
+                            <input type="text" name="url" id="url" class="summarizer_url_box" placeholder="URLを入力してください" required>
+                            <div class="button_icon">
+                                <div class="button_inner">
+                                    <img src="{% static 'images/arrow.png' %}" alt="">
+                                    <div class="button_box">
+                                        <button type="submit" class="summarizer_button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+    
+            {% if generated_image or similar_image %}
+            <div class="summarizer_image_section">
+                <div class="summarizer_image_inner">
+                    {% if not similar_image %}
+                    <p id="animetion_sentence" class="sentence animetion_sentence">
+                        画像が生成されました！<br>
+                        気に入らない点がある場合は、画像下のテキストエリアに追加情報を入力してから<br>
+                        類似画像の生成も可能です。
+                    </p>
+                    {% else %}
+                    <p id="animetion_sentence" class="sentence animetion_sentence">
+                        類似画像が生成されました！<br>
+                        気に入らない点がある場合は、追加情報を修正して<br>
+                        お気に入りのロゴ画像を生成しましょう。
+                    </p>
+                    {% endif %}
+                    <div class="summarizer_image_box">
+                            {% if not similar_image %}
+                            <div class="summarizer_image">
+                                <img src="{{ generated_image.image.url }}" alt="Generated Image" style="max-width: 500px;">
+                            </div>
+                            {% else %}
+                            <div class="summarizer_image">
+                                <img src="{{ similar_image.image.url }}" alt="Generated Image" style="max-width: 500px;">
+                            </div>
+                            {% endif %}
+                            <div class="image_icon">
+                                <div class="download">
+                                    <div class="download_icon">
+                                        {% if not similar_image %}
+                                        <a href="{{ generated_image.image.url }}" download><img src="{% static 'images/download.png' %}" alt=""></a>
+                                        {% else %}
+                                        <a href="{{ similar_image.image.url }}" download><img src="{% static 'images/download.png' %}" alt=""></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="bookmark">
+                                    <div class="bookmark_form">
+                                        {% if not similar_image %}
+                                        <form method="post" action="{% url 'bookmark_image' generated_image.id %}">
+                                        {% else %}
+                                        <form method="post" action="{% url 'bookmark_image' similar_image.id %}">
+                                        {% endif %}
+                                            {% csrf_token %}
+                                            <button type="submit"></button>
+                                        </form>
+                                        
+                                    </div>
+                                    <div class="bookmark_image">
+                                        <img src="{% static 'images/bookmark.png' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="summarizer_image_text">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <!-- <input type="hidden" name="summary" value="{{ summary }}"> -->
+                            {% if not similar_image %}
+                            <input type="hidden" name="original_image_path" value="{{ generated_image.image.name }}">
+                            {% else %}
+                            <input type="hidden" name="original_image_path" value="{{ similar_image.image.name }}">
+                            {% endif %}
+                            <textarea name="additional_text" id="additional_text" rows="4" cols="50" placeholder="変更したい要素を入力してください。"></textarea><br>
+                            <div class="img_button_box">
+                                <button type="submit" name="generate_similar_image">類似画像を生成</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if generated_image or summary or similar_image %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("loading-overlay").style.display = "none";
+        });
+    </script>
+    {% endif %}
+
+{% endblock %}
+

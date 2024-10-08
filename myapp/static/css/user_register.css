@@ -1,0 +1,106 @@
+.register_section {
+    background-image: url(../images/main_background.png);    background-image:
+    radial-gradient(at 0% 0%, rgb(216, 181, 232), transparent),
+    radial-gradient(at 100% 0%, rgb(247, 247, 97), transparent),
+    radial-gradient(at 100% 100%, #f00, transparent),
+    radial-gradient(at 0% 100%, #f0f, transparent);    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register_inner {
+    border:rgba(255, 253, 253, 0.84) solid 1px;
+    width: 60%;
+    height: 80%;
+    background-color: #ffffff90;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.register_inner::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent; 
+}
+
+.register_inner::-webkit-scrollbar-thumb {
+    background: #6123689e;
+    width: 6px;
+    border-radius: 25px;
+}
+
+.register_wrapper {
+    width: 45%;
+}
+
+.signup {
+    font-weight: bold;
+    font-size: 2vw;
+    color: #6123689e;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+p {
+    color: #6123689e;
+    margin: 20px 0 10px 0;
+    font-size: 0.8vw;
+}
+
+input {
+    padding-left: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input, textarea, select {
+    background-color: #fff;
+    border-radius: 25px;
+}
+
+input, .button {
+    width: 100%;
+}
+
+textarea {
+    padding: 15px;
+    width: 100%;
+    height: 100px;
+}
+
+input, select, .button {
+    height: 40px;
+}
+
+select {
+    width: 100px;
+    text-align: center;
+    color: #6123689e;
+}
+
+.button {
+    background: linear-gradient(70deg, #e01df69e, #8832929e);
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+button {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+.link {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 0.8vw;
+}
+
+a{
+    color: #6123689e;;
+}

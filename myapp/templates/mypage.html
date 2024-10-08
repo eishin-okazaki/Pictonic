@@ -1,0 +1,35 @@
+<!-- templates/mypage.html -->
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}マイページ{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>マイページ</title>
+</head>
+    <div class="mypage">
+        <div class="mypage_wrapper">
+            <div class="mypage_inner">
+                <div class="image_area">
+                {% for bookmark in bookmarks %}
+                    <div class="image_box">
+                        <div class="image">
+                            <img src="{{ bookmark.image.image.url }}" alt="Bookmarked Image" style="max-width: 200px;"><br>
+                        </div>
+                        <div class="download">
+                            <div class="download_icon">
+                                <a href="{{ bookmark.image.image.url }}" download><img src="{% static 'images/download.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

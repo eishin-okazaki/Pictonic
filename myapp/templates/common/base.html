@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}default{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+    {% if login_user_name %}
+    <div class="header_body">
+        <div class="header">
+            <div class="login_user_image">
+                <img src="{% static 'images/user_image/'|add:login_user_image %}" alt="Logged In User Image">
+            </div>
+            <div class="menu">
+                <div class="menu_section">
+                    <div class="user_image_box">
+                        <div class="user_image">
+                            <img src="{% static 'images/user_image/'|add:login_user_image %}" alt="Logged In User Image">
+                        </div>
+                    </div>
+                    <div class="user_info">
+                        <p class="user_name">{{login_user_name}}</p>
+                        <p class="user_email">{{login_user_email}}</p>
+                    </div>
+                    <div class="menu_info">
+                        <div class="menu_inner">
+                            <div>
+                                <a href="{% url 'summarizer' %}">TOPページ</a>
+                            </div>
+                            <div>
+                                <a href="{% url 'mypage' %}">マイページ</a>
+                            </div>
+                            <div>
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="logout-button">ログアウト</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{% static 'js/display_menu.js' %}"></script>
+    <script src="{% static 'js/typing.js' %}"></script>
+    <script src="{% static 'js/spinner.js' %}"></script>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>
